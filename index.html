@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
+        <link rel="stylesheet" href="css/Control.FullScreen.css">
+		
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet-src.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="data/Lmitemunicipal_0.js"></script>
+        <script src="data/Ncleohistricotradicional_1.js"></script>
+        <script src="data/Arqueologa_2.js"></script>
+        <script src="data/Rgimenrstico_3.js"></script>
+        <script src="data/Rgimenurbano_4.js"></script>
+        <script src="js/Control.FullScreen.js"></script>
+		
+        <script>
+		
+		var map = L.map('map', {
+			center: new L.LatLng(39.072, -0.514),
+			zoom: 14,
+			zoomControl:true, maxZoom:22, minZoom:1
+		});
+		
+        var hash = new L.Hash(map);
+        map.attributionControl.addAttribution('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a>');
+
+        var bounds_group = new L.featureGroup([]);
+        var basemap0 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+            maxZoom: 22
+        });
+
+        var basemap1 = L.tileLayer('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+            maxZoom: 22,
+			maxNativeZoom: 18					
+        });
+        basemap1.addTo(map);
+
+		// Layers -------------------------------------------------------------------------------------------------------
+      
+  		var capaOrtoActual = L.tileLayer.wms("http://www.ign.es/wms-inspire/pnoa-ma", {
+			layers: 'OI.OrthoimageCoverage',
+			format: 'image/png',
+			transparent: true,
+			maxZoom: 25, 
+			attribution: "Ortofotos PNOA máxima actualidad"
+		});    
+
+  		var capaCatastroTodo = L.tileLayer.wms("http://ovc.catastro.meh.es/Cartografia/WMS/ServidorWMS.aspx?", {
+			layers: 'Catastro',
+			format: 'image/png',
+			transparent: true,
+          	maxZoom: 22, 
+			tileSize: 1024,				
+			attribution: "Cartografía Catastral de la Dirección General del Catastro"
+		});   		
+		
+        function setBounds() {
+        }
+        function pop_Lmitemunicipal_0(feature, layer) {
+        }
+
+        function style_Lmitemunicipal_0_0() {
+            return {
+                pane: 'pane_Lmitemunicipal_0',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '10,5,1,5',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fillOpacity: 0,
+            }
+        }
+        map.createPane('pane_Lmitemunicipal_0');
+        map.getPane('pane_Lmitemunicipal_0').style.zIndex = 400;
+        map.getPane('pane_Lmitemunicipal_0').style['mix-blend-mode'] = 'normal';
+    var layer_Lmitemunicipal_0 = new L.geoJson(json_Lmitemunicipal_0, {
+        attribution: '<a href=""></a>',
+        pane: 'pane_Lmitemunicipal_0',
+        onEachFeature: pop_Lmitemunicipal_0,
+        style: style_Lmitemunicipal_0_0,
+    });
+        bounds_group.addLayer(layer_Lmitemunicipal_0);
+        map.addLayer(layer_Lmitemunicipal_0);
+        function pop_Ncleohistricotradicional_1(feature, layer) {
+        }
+
+        function style_Ncleohistricotradicional_1_0() {
+            return {
+                pane: 'pane_Ncleohistricotradicional_1',
+                opacity: 1,
+                color: 'rgba(255,0,0,1.0)',
+                dashArray: '10,5',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 0,
+            }
+        }
+        map.createPane('pane_Ncleohistricotradicional_1');
+        map.getPane('pane_Ncleohistricotradicional_1').style.zIndex = 401;
+        map.getPane('pane_Ncleohistricotradicional_1').style['mix-blend-mode'] = 'normal';
+    var layer_Ncleohistricotradicional_1 = new L.geoJson(json_Ncleohistricotradicional_1, {
+        attribution: '<a href=""></a>',
+        pane: 'pane_Ncleohistricotradicional_1',
+        onEachFeature: pop_Ncleohistricotradicional_1,
+        style: style_Ncleohistricotradicional_1_0,
+    });
+        bounds_group.addLayer(layer_Ncleohistricotradicional_1);
+        function pop_Arqueologa_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Protección</th>\
+                        <td>' + (feature.properties['proteccion'] !== null ? Autolinker.link(String(feature.properties['proteccion'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Ficha</th>\
+                        <td>' + (feature.properties['ficha'] !== null ? Autolinker.link(String(feature.properties['ficha'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Nivel protección</th>\
+                        <td>' + (feature.properties['nivel_prot'] !== null ? Autolinker.link(String(feature.properties['nivel_prot'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Arqueologa_2_0() {
+            return {
+                pane: 'pane_Arqueologa_2',
+                opacity: 1,
+                color: 'rgba(156,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 1,
+                fillColor: 'rgba(239,129,116,1.0)',
+            }
+        }
+        map.createPane('pane_Arqueologa_2');
+        map.getPane('pane_Arqueologa_2').style.zIndex = 402;
+        map.getPane('pane_Arqueologa_2').style['mix-blend-mode'] = 'normal';
+    var layer_Arqueologa_2 = new L.geoJson(json_Arqueologa_2, {
+        attribution: '<a href=""></a>',
+        pane: 'pane_Arqueologa_2',
+        onEachFeature: pop_Arqueologa_2,
+        style: style_Arqueologa_2_0,
+    });
+        bounds_group.addLayer(layer_Arqueologa_2);
+        function pop_Rgimenrstico_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Polígon</th>\
+                        <td>' + (feature.properties['PARCELA__2'] !== null ? Autolinker.link(String(feature.properties['PARCELA__2'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Parcela</th>\
+                        <td>' + (feature.properties['PARCELA_PA'] !== null ? Autolinker.link(String(feature.properties['PARCELA_PA'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Clasificació</th>\
+                        <td>' + (feature.properties['clas'] !== null ? Autolinker.link(String(feature.properties['clas'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Calificació</th>\
+                        <td>' + (feature.properties['calif'] !== null ? Autolinker.link(String(feature.properties['calif'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['URL'] !== null ? Autolinker.link(String(feature.properties['URL'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Rgimenrstico_3_0(feature) {
+            switch(feature.properties['calif'].toString()) {
+                case 'Común':
+                    return {
+                pane: 'pane_Rgimenrstico_3',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.6)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 1,
+                fillColor: 'rgba(195,226,128,0.6)',
+            }
+                    break;
+                case 'Dotacional':
+                    return {
+                pane: 'pane_Rgimenrstico_3',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.6)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 1,
+                fillColor: 'rgba(209,0,3,0.6)',
+            }
+                    break;
+                case 'Protegido':
+                    return {
+                pane: 'pane_Rgimenrstico_3',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.6)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 1,
+                fillColor: 'rgba(24,131,7,0.6)',
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_Rgimenrstico_3');
+        map.getPane('pane_Rgimenrstico_3').style.zIndex = 403;
+        map.getPane('pane_Rgimenrstico_3').style['mix-blend-mode'] = 'normal';
+    var layer_Rgimenrstico_3 = new L.geoJson(json_Rgimenrstico_3, {
+        attribution: '<a href=""></a>',
+        pane: 'pane_Rgimenrstico_3',
+        onEachFeature: pop_Rgimenrstico_3,
+        style: style_Rgimenrstico_3_0,
+    });
+        bounds_group.addLayer(layer_Rgimenrstico_3);
+        map.addLayer(layer_Rgimenrstico_3);
+        function pop_Rgimenurbano_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Referència Cadastral</th>\
+                        <td>' + (feature.properties['PARCELA_RE'] !== null ? Autolinker.link(String(feature.properties['PARCELA_RE'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Clasificació</th>\
+                        <td>' + (feature.properties['clas'] !== null ? Autolinker.link(String(feature.properties['clas'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Calificació</th>\
+                        <td>' + (feature.properties['calif'] !== null ? Autolinker.link(String(feature.properties['calif'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Zona Ordenació Urbanística</th>\
+                        <td>' + (feature.properties['zou'] !== null ? Autolinker.link(String(feature.properties['zou'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Nivel</th>\
+                        <td>' + (feature.properties['nivel'] !== null ? Autolinker.link(String(feature.properties['nivel'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Altures</th>\
+                        <td>' + (feature.properties['aturas'] !== null ? Autolinker.link(String(feature.properties['aturas'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Proposta de catalogació</th>\
+                        <td>' + (feature.properties['i_prot'] !== null ? Autolinker.link(String(feature.properties['i_prot'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Edifici catalogat</th>\
+                        <td>' + (feature.properties['i_prot_ant'] !== null ? Autolinker.link(String(feature.properties['i_prot_ant'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Protecció Arqueològica</th>\
+                        <td>' + (feature.properties['proteccion'] !== null ? Autolinker.link(String(feature.properties['proteccion'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Àmbit de protecció arqueològica</th>\
+                        <td>' + (feature.properties['ficha'] !== null ? Autolinker.link(String(feature.properties['ficha'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Nivell de protecció arqueològica</th>\
+                        <td>' + (feature.properties['nivel_prot'] !== null ? Autolinker.link(String(feature.properties['nivel_prot'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Unitat execució pendent</th>\
+                        <td>' + (feature.properties['ue'] !== null ? Autolinker.link(String(feature.properties['ue'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Instrument de planegament vigent</th>\
+                        <td>' + (feature.properties['instrument'] !== null ? Autolinker.link(String(feature.properties['instrument'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['URL'] !== null ? Autolinker.link(String(feature.properties['URL'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 500});
+        }
+
+        function style_Rgimenurbano_4_0(feature) {
+            switch(feature.properties['zou'].toString()) {
+                case 'Casc Urbà Residencial - NHT':
+                    return {
+                pane: 'pane_Rgimenurbano_4',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.6)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 1,
+                fillColor: 'rgba(71,176,241,0.6)',
+            }
+                    break;
+                case 'Casc Urbà Residencial':
+                    return {
+                pane: 'pane_Rgimenurbano_4',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.6)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 1,
+                fillColor: 'rgba(17,159,241,0.6)',
+            }
+                    break;
+                case 'Casc Urbà Industrial':
+                    return {
+                pane: 'pane_Rgimenurbano_4',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.6)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 1,
+                fillColor: 'rgba(200,167,17,0.6)',
+            }
+                    break;
+                case 'Equipamiento':
+                    return {
+                pane: 'pane_Rgimenurbano_4',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.6)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 1,
+                fillColor: 'rgba(250,0,58,0.6)',
+            }
+                    break;
+                case 'Espacios Libres':
+                    return {
+                pane: 'pane_Rgimenurbano_4',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.6)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 1,
+                fillColor: 'rgba(6,174,29,0.6)',
+            }
+                    break;
+                case 'Ronda L\'Almenà - Bloc Adossat':
+                    return {
+                pane: 'pane_Rgimenurbano_4',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.6)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 1,
+                fillColor: 'rgba(168,215,85,0.6)',
+            }
+                    break;
+                case 'Sudoest - Edificació Aïllada':
+                    return {
+                pane: 'pane_Rgimenurbano_4',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.6)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 1,
+                fillColor: 'rgba(230,237,85,0.6)',
+            }
+                    break;
+                case 'Horts de Llevant - Unifamiliar':
+                    return {
+                pane: 'pane_Rgimenurbano_4',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.6)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 1,
+                fillColor: 'rgba(10,96,143,0.6)',
+            }
+                    break;
+                case 'Horts de Llevant II - Unifamiliar Adosada':
+                    return {
+                pane: 'pane_Rgimenurbano_4',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.6)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 1,
+                fillColor: 'rgba(222,45,140,0.6)',
+            }
+                    break;
+                case 'Horts de Llevant II - Edificació Oberta':
+                    return {
+                pane: 'pane_Rgimenurbano_4',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.6)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 1,
+                fillColor: 'rgba(112,96,143,0.6)',
+            }
+                    break;
+                case 'Monteolivet - Industria Gran':
+                    return {
+                pane: 'pane_Rgimenurbano_4',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.6)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 1,
+                fillColor: 'rgba(136,91,65,0.6)',
+            }
+                    break;
+                case 'Monteolivet - Industria Xicoteta':
+                    return {
+                pane: 'pane_Rgimenurbano_4',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.6)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 1,
+                fillColor: 'rgba(136,106,91,0.6)',
+            }
+                    break;
+                case 'El Pla - Industria Gran':
+                    return {
+                pane: 'pane_Rgimenurbano_4',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.6)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 1,
+                fillColor: 'rgba(171,142,14,0.6)',
+            }
+                    break;
+                case 'El Pla - Limitació d\'Usos i Obres':
+                    return {
+                pane: 'pane_Rgimenurbano_4',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.6)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 1,
+                fillColor: 'rgba(126,103,9,0.6)',
+            }
+                    break;
+                case 'El Pla I - Industria Xicoteta':
+                    return {
+                pane: 'pane_Rgimenurbano_4',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.6)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 1,
+                fillColor: 'rgba(141,153,86,0.6)',
+            }
+                    break;
+                case 'El Pla II - Bloc Adossat':
+                    return {
+                pane: 'pane_Rgimenurbano_4',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.6)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 1,
+                fillColor: 'rgba(207,148,105,0.6)',
+            }
+                    break;
+                case 'El Pla II - Bloc Exempt':
+                    return {
+                pane: 'pane_Rgimenurbano_4',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.6)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 1,
+                fillColor: 'rgba(151,107,76,0.6)',
+            }
+                    break;
+                case 'Red Viaria':
+                    return {
+                pane: 'pane_Rgimenurbano_4',
+                opacity: 1,
+                color: 'rgba(0,0,0,0.6)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,0.0)',
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_Rgimenurbano_4');
+        map.getPane('pane_Rgimenurbano_4').style.zIndex = 404;
+        map.getPane('pane_Rgimenurbano_4').style['mix-blend-mode'] = 'normal';
+    var layer_Rgimenurbano_4 = new L.geoJson(json_Rgimenurbano_4, {
+        attribution: '<a href=""></a>',
+        pane: 'pane_Rgimenurbano_4',
+        onEachFeature: pop_Rgimenurbano_4,
+        style: style_Rgimenurbano_4_0,
+    });
+        bounds_group.addLayer(layer_Rgimenurbano_4);
+        map.addLayer(layer_Rgimenurbano_4);
+        var baseMaps = {'Open Street Map BN': basemap1, 'Ortofoto': capaOrtoActual};
+        L.control.layers(baseMaps,{'Régimen urbano<br /><table><tr><td style="text-align: center;"><img src="legend/Rgimenurbano_4_CascUrbResidencialNHT0.png" /></td><td>Casc Urbà  Residencial - NHT</td></tr><tr><td style="text-align: center;"><img src="legend/Rgimenurbano_4_CascUrbResidencial1.png" /></td><td>Casc Urbà  Residencial</td></tr><tr><td style="text-align: center;"><img src="legend/Rgimenurbano_4_CascUrbIndustrial2.png" /></td><td>Casc Urbà  Industrial</td></tr><tr><td style="text-align: center;"><img src="legend/Rgimenurbano_4_Equipamiento3.png" /></td><td>Equipamiento</td></tr><tr><td style="text-align: center;"><img src="legend/Rgimenurbano_4_EspaciosLibres4.png" /></td><td>Espacios Libres</td></tr><tr><td style="text-align: center;"><img src="legend/Rgimenurbano_4_RondaLAlmenBlocAdossat5.png" /></td><td>Ronda L\'Almenà  - Bloc Adossat</td></tr><tr><td style="text-align: center;"><img src="legend/Rgimenurbano_4_SudoestEdificaciAllada6.png" /></td><td>Sudoest - Edificació Aïllada</td></tr><tr><td style="text-align: center;"><img src="legend/Rgimenurbano_4_HortsdeLlevantUnifamiliar7.png" /></td><td>Horts de Llevant - Unifamiliar</td></tr><tr><td style="text-align: center;"><img src="legend/Rgimenurbano_4_HortsdeLlevantIIUnifamiliarAdosada8.png" /></td><td>Horts de Llevant II - Unifamiliar Adosada</td></tr><tr><td style="text-align: center;"><img src="legend/Rgimenurbano_4_HortsdeLlevantIIEdificaciOberta9.png" /></td><td>Horts de Llevant II - Edificació Oberta</td></tr><tr><td style="text-align: center;"><img src="legend/Rgimenurbano_4_MonteolivetIndustriaGran10.png" /></td><td>Monteolivet - Industria Gran</td></tr><tr><td style="text-align: center;"><img src="legend/Rgimenurbano_4_MonteolivetIndustriaXicoteta11.png" /></td><td>Monteolivet - Industria Xicoteta</td></tr><tr><td style="text-align: center;"><img src="legend/Rgimenurbano_4_ElPlaIndustriaGran12.png" /></td><td>El Pla - Industria Gran</td></tr><tr><td style="text-align: center;"><img src="legend/Rgimenurbano_4_ElPlaLimitacidUsosiObres13.png" /></td><td>El Pla - Limitació d\'Usos i Obres</td></tr><tr><td style="text-align: center;"><img src="legend/Rgimenurbano_4_ElPlaIIndustriaXicoteta14.png" /></td><td>El Pla I - Industria Xicoteta</td></tr><tr><td style="text-align: center;"><img src="legend/Rgimenurbano_4_ElPlaIIBlocAdossat15.png" /></td><td>El Pla II - Bloc Adossat</td></tr><tr><td style="text-align: center;"><img src="legend/Rgimenurbano_4_ElPlaIIBlocExempt16.png" /></td><td>El Pla II - Bloc Exempt</td></tr><tr><td style="text-align: center;"><img src="legend/Rgimenurbano_4_RedViaria17.png" /></td><td>Red Viaria</td></tr></table>': layer_Rgimenurbano_4,'Régimen rústico<br /><table><tr><td style="text-align: center;"><img src="legend/Rgimenrstico_3_Comn0.png" /></td><td>Común</td></tr><tr><td style="text-align: center;"><img src="legend/Rgimenrstico_3_Dotacional1.png" /></td><td>Dotacional</td></tr><tr><td style="text-align: center;"><img src="legend/Rgimenrstico_3_Protegido2.png" /></td><td>Protegido</td></tr></table>': layer_Rgimenrstico_3,'<img src="legend/Arqueologa_2.png" /> Arqueología': layer_Arqueologa_2,'<img src="legend/Ncleohistricotradicional_1.png" /> Núcleo histórico tradicional': layer_Ncleohistricotradicional_1,'<img src="legend/Lmitemunicipal_0.png" /> Límite municipal': layer_Lmitemunicipal_0, "Catastro": capaCatastroTodo},{collapsed:true}).addTo(map);
+        setBounds();
+		
+		L.control.scale({imperial: false}).addTo(map); 
+		
+		L.Control.Watermark = L.Control.extend({
+			onAdd: function(map) {
+				var img = L.DomUtil.create('img');
+
+				img.src = 'images/Logotip_2.png';
+				img.style.width = '80px';
+
+				return img;
+			},
+
+			onRemove: function(map) {
+				// Nothing to do here
+			}
+		});
+
+		L.control.watermark = function(opts) {
+			return new L.Control.Watermark(opts);
+		}
+
+		L.control.watermark({ position: 'bottomleft' }).addTo(map);    
+	
+		// create a fullscreen button and add it to the map
+		L.control.fullscreen({
+		  position: 'topleft', // change the position of the button can be topleft, topright, bottomright or bottomleft, defaut topleft
+		  title: 'Ver en pantalla completa', // change the title of the button, default Full Screen
+		  titleCancel: 'Salir de la pantalla completa', // change the title of the button when fullscreen is on, default Exit Full Screen
+		  forceSeparateButton: true, // force seperate button to detach from zoom buttons, default false
+		}).addTo(map);	
+				
+		// events are fired when entering or exiting fullscreen.
+		map.on('enterFullscreen', function(){
+		  console.log('entered fullscreen');
+		});
+
+		map.on('exitFullscreen', function(){
+		  console.log('exited fullscreen');
+		});
+		
+        var measureControl = new L.Control.Measure({
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares',
+            position: 'topleft',
+        });
+        measureControl.addTo(map);		
+		
+		
+        </script>
+    </body>
+</html>
